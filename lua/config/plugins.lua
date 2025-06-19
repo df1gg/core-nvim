@@ -176,5 +176,40 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        "nvimtools/none-ls.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            local null_ls = require("null-ls")
+
+            null_ls.setup({
+                sources = {
+                    -- Python
+                    null_ls.builtins.formatting.black,
+
+                    -- JS/TS/HTML/CSS
+                    null_ls.builtins.formatting.prettier.with({
+                        filetypes = { "javascript", "typescript", "html", "css", "json", "yaml", "markdown" },
+                    }),
+
+                    -- C
+                    null_ls.builtins.formatting.clang_format,
+                },
+                on_attach = function(client, bufnr)
+                    if client.supports_method("textDocument/formatting") then
+                        local group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
+
+                        vim.api.nvim_create_autocmd("BufWritePre", {
+                            group = group,
+                            buffer = bufnr,
+                            callback = function()
+                                vim.lsp.buf.format({ bufnr = bufnr })
+                            end,
+                        })
+                    end
+                end
+            })
+        end,
+    },
 })
 
