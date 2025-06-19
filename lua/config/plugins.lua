@@ -82,5 +82,38 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate",
+        config = true
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = true
+    },
+    {
+        "neovim/nvim-lspconfig",
+        config = function()
+            local lspconfig = require("lspconfig")
+
+            -- Main attach for cmp
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            -- Python
+            lspconfig.pyright.setup({
+                capabilities = capabilities,
+            })
+
+            -- C
+            lspconfig.clangd.setup({
+                capabilities = capabilities,
+            })
+
+            -- JavaScript / TypeScript
+            lspconfig.ts_ls.setup({
+                capabilities = capabilities,
+            })
+        end
+    },
 })
 
