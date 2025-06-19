@@ -141,5 +141,40 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
+        keys = {
+            { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle File Tree" },
+        },
+        config = function()
+            require("nvim-tree").setup({
+                view = {
+                    width = 30,
+                    side = "left",
+                    relativenumber = true,
+                },
+                renderer = {
+                    highlight_git = true,
+                    icons = {
+                        show = {
+                            git = true,
+                            folder = true,
+                            file = true,
+                            folder_arrow = true,
+                        },
+                    },
+                },
+                filters = {
+                    dotfiles = false,
+                },
+                git = {
+                    enable = true,
+                    ignore = false,
+                },
+            })
+        end,
+    },
 })
 
