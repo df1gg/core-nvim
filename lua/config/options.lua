@@ -13,6 +13,8 @@ opt.backup = false
 opt.undofile = true
 opt.termguicolors = true
 opt.cursorline = true
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Tabs
 opt.tabstop = 4
