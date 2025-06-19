@@ -273,7 +273,7 @@ require("lazy").setup({
                 dashboard.button("q", "  Exit", ":qa<CR>"),
             }
 
-            dashboard.section.footer.val = "neovim ✨ minimal but powerful"
+            dashboard.section.footer.val = "core neovim ✨ minimal but powerful"
             dashboard.opts.opts.noautocmd = true
 
             alpha.setup(dashboard.opts)
