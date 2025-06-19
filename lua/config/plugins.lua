@@ -42,5 +42,45 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        "hrsh7th/nvim-cmp",                 -- main autocomplete plugin
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",         -- LSP source
+            "hrsh7th/cmp-buffer",           -- bufers
+            "hrsh7th/cmp-path",             -- path
+            "hrsh7th/cmp-cmdline",          -- :commands
+            "L3MON4D3/LuaSnip",             -- snippets engine
+            "saadparwaiz1/cmp_luasnip",     -- source for snippets
+            "rafamadriz/friendly-snippets"  -- snippets
+        },
+        event = "InsertEnter",
+        config = function()
+            local cmp = require("cmp")
+            local luasnip = require("luasnip")
+
+            require("luasnip.loaders.from_vscode").lazy_load()
+
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                    end,
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ["<Tab>"] = cmp.mapping.select_next_item(),
+                    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+                    ["<C-Space>"] = cmp.mapping.complete(),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                }),
+                sources = cmp.config.sources({
+                    { name = "nvim_lsp" },
+                    { name = "luasnip" },
+                }, {
+                    { name = "buffer" },
+                    { name = "path" },
+                }),
+            })
+        end,
+    },
 })
 
