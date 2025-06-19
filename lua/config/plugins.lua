@@ -99,19 +99,24 @@ require("lazy").setup({
             -- Main attach for cmp
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+            local keymaps = require("config.keymaps")
+
             -- Python
             lspconfig.pyright.setup({
                 capabilities = capabilities,
+                on_attach = keymaps.on_attach,
             })
 
             -- C
             lspconfig.clangd.setup({
                 capabilities = capabilities,
+                on_attach = keymaps.on_attach,
             })
 
             -- JavaScript / TypeScript
             lspconfig.ts_ls.setup({
                 capabilities = capabilities,
+                on_attach = keymaps.on_attach,
             })
         end
     },
