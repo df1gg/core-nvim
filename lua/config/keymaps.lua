@@ -1,5 +1,9 @@
 -- lua/config/keymaps.lua
 
+
+vim.keymap.set('v', '<leader>y', '"+y', { desc = "Copy to system clipboard" })
+vim.keymap.set('n', '<leader>Y', '"+yy', { desc = "Copy line to system clipboard" })
+
 -- Function to set the keys when the LSP is started in the buffer
 local on_attach = function(_, bufnr)
     local nmap = function(keys, func, desc)
