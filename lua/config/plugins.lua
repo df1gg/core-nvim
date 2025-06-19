@@ -234,4 +234,20 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("which-key").setup({
+                win = {
+                    border = "rounded",
+                    padding = { 2, 2, 2, 2 },
+                },
+                layout = {
+                    spacing = 6,
+                    align = "center",
+                },
+            })
+        end,
+    },
 })
