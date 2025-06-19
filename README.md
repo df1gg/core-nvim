@@ -140,7 +140,3 @@ If you find this useful — star the repo and share ❤️
 ## ⚖️ License
 
 MIT
-
----
-
-Built with love by `@yourname`
