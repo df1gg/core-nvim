@@ -28,7 +28,7 @@
 ### 2. Installation
 
 ```bash
-git clone https://github.com/yourname/CoreNvim.git ~/.config/nvim
+git clone https://github.com/df1gg/core-nvim.git ~/.config/nvim
 nvim
 ```
 
