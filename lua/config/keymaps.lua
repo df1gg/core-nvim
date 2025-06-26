@@ -4,6 +4,33 @@
 vim.keymap.set('v', '<leader>y', '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set('n', '<leader>Y', '"+yy', { desc = "Copy line to system clipboard" })
 
+local map = vim.keymap.set
+
+-- Window navigation
+map('n', '<C-h>', '<C-w>h', { desc = 'Go to left window' })
+map('n', '<C-j>', '<C-w>j', { desc = 'Go to below window' })
+map('n', '<C-k>', '<C-w>k', { desc = 'Go to above window' })
+map('n', '<C-l>', '<C-w>l', { desc = 'Go to right window' })
+map('t', '<C-h>', [[<C-\><C-n><C-w>h]], { desc = 'Terminal: go to left window' })
+map('t', '<C-j>', [[<C-\><C-n><C-w>j]], { desc = 'Terminal: go to below window' })
+map('t', '<C-k>', [[<C-\><C-n><C-w>k]], { desc = 'Terminal: go to above window' })
+map('t', '<C-l>', [[<C-\><C-n><C-w>l]], { desc = 'Terminal: go to right window' })
+
+-- Splits
+map('n', '<leader>sh', ':split<CR>',      { desc = 'Horizontal split' })
+map('n', '<leader>sv', ':vsplit<CR>',     { desc = 'Vertical split' })
+map('n', '<leader>sx', ':close<CR>',      { desc = 'Close split' })
+map('n', '<leader>se', '<C-w>=',          { desc = 'Equalize splits' })
+
+map('n', '<leader>c', '<C-w>l', { desc = 'Focus code window' })
+
+-- Open file under cursor in split
+map('n', '<leader>sv', ':vsplit <C-R>=expand("<cfile>")<CR><CR>', { desc = 'Open file under cursor in vsplit' })
+map('n', '<leader>sh', ':split <C-R>=expand("<cfile>")<CR><CR>', { desc = 'Open file under cursor in split' })
+
+-- Equalize windows
+map('n', '<leader>=', '<C-w>=', { desc = 'Equalize window sizes' })
+
 -- Function to set the keys when the LSP is started in the buffer
 local on_attach = function(_, bufnr)
     local nmap = function(keys, func, desc)

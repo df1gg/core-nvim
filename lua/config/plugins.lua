@@ -26,6 +26,13 @@ require("lazy").setup({
         priority = 1000,
     },
     {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = true
+        -- use opts = {} for passing setup options
+        -- this is equivalent to setup({}) function
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         event = "BufReadPost",
@@ -105,6 +112,11 @@ require("lazy").setup({
             lspconfig.pyright.setup({
                 capabilities = capabilities,
                 on_attach = keymaps.on_attach,
+                settings = {
+                    python = {
+                        pythonPath = "./.venv/bin/python",
+                    }
+                }
             })
 
             -- C
